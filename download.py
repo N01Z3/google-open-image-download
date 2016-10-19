@@ -36,11 +36,11 @@ def parse_args():
 
     parser.add_argument('--timeout', type=float, default=2.0,
                         help='image download timeout')
-    parser.add_argument('--queue-size', type=int, default=1000,
+    parser.add_argument('--queue-size', type=int, default=640,
                         help='maximum image url queue size')
-    parser.add_argument('--consumers', type=int, default=5,
+    parser.add_argument('--consumers', type=int, default=20,
                         help='number of download workers')
-    parser.add_argument('--min-dim', type=int, default=256,
+    parser.add_argument('--min-dim', type=int, default=420,
                         help='smallest dimension for the aspect ratio preserving scale'
                              '(-1 for no scale)')
     parser.add_argument('--sub-dirs', type=int, default=1000,
@@ -145,7 +145,10 @@ def producer(args, queue):
 
     with open(args.input) as f:
         for row in unicode_dict_reader(f):
-            queue.put([row['ImageID'], row['OriginalURL']], block=True, timeout=None)
+            url = row['Thumbnail300KURL']
+            if type(url) is float:
+                url = row['OriginalURL']
+            queue.put([row['ImageID'], url], block=True, timeout=None)
             log.debug('queue_size = {}'.format(queue.qsize()))
 
     queue.close()

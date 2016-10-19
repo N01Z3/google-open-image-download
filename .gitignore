@@ -1,0 +1,11 @@
+# Created by .ignore support plugin (hsz.mobi)
+.gitignore
+.idea/
+download_allchunk.sh
+make_bash.py
+1/
+images_2016_08/
+images_2016_08_v5.tar.gz
+images_2016_08_v5.tar.gz.1
+images_2016_08_v5.tar.gz.2
+tmp.py
