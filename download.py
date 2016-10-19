@@ -146,7 +146,7 @@ def producer(args, queue):
     with open(args.input) as f:
         for row in unicode_dict_reader(f):
             url = row['Thumbnail300KURL']
-            if type(url) is float:
+            if len(url) == 0:
                 url = row['OriginalURL']
             queue.put([row['ImageID'], url], block=True, timeout=None)
             log.debug('queue_size = {}'.format(queue.qsize()))
