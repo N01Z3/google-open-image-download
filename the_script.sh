@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-#wget https://storage.googleapis.com/openimages/2016_08/images_2016_08_v5.tar.gz
-#tar -zxvf images_2016_08_v5.tar.gz
-#python split_csv.py
+wget https://storage.googleapis.com/openimages/2016_08/images_2016_08_v5.tar.gz
+tar -zxvf images_2016_08_v5.tar.gz
+python split_csv.py
 
 mkdir 1
 python download.py ./images_2016_08/train/train_1.csv ./1/
